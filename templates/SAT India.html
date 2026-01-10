@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SAT India</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <img class="logo"
+         src="/static/images/sat-logo.png"
+         alt="SAT Logo">
+
+    <ul class="nav-right">
+        <li><a href="/">Home</a></li>
+        <li><a href="/why-sat">Why SAT</a></li>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/privacy-law">Privacy & Law</a></li>
+        <li><a href="/join-us">Join Us</a></li>
+    </ul>
+</nav>
+
+<!-- PAGE CONTENT WILL COME HERE -->
+
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>
+            Lawful Recovery.<br>
+            Consent-Based Intelligence.<br>
+            Built for India.
+        </h1>
+        <p>
+            Supporting citizens and authorities in the recovery of lost or stolen
+            mobile devices — without surveillance.
+        </p>
+        <div class="hero-buttons">
+            <a class="btn primary">Learn More</a>
+            <a class="btn secondary">Our Mission</a>
+        </div>
+    </div>
+</section>
+
+<section class="phone-loss">
+    <div class="text-block">
+        <h2>Recovery Matters — Not Just Blocking</h2>
+        <p>
+            Our major focus is recovering the phone, not just blocking it.
+            I come from a family where losing a phone meant losing months of savings.
+            SAT is built so others don’t feel that pain.<br><br>
+            SAT is an India-first, lawful platform designed to support citizens
+            and authorities in device loss cases.
+        </p>
+    </div>
+    <img src="/static/images/phone-loss.jpg">
+</section>
+
+<section class="features">
+
+    <div class="feature">
+        <img class="icon-img" src="/static/images/icons/privacy.svg">
+        <h3>Privacy First</h3>
+        <span class="label">No Surveillance</span>
+        <p>Zero tracking, zero profiling, citizen-first design</p>
+    </div>
+
+    <div class="feature">
+        <img class="icon-img" src="/static/images/icons/no-tracking.svg">
+        <h3>No Tracking</h3>
+        <span class="label">No Live Monitoring</span>
+        <p>Devices are never tracked in real time</p>
+    </div>
+
+    <div class="feature">
+        <img class="icon-img" src="/static/images/icons/fir.svg">
+        <h3>FIR Verified</h3>
+        <span class="label">Legal Entry</span>
+        <p>Recovery begins only after FIR validation</p>
+    </div>
+
+    <div class="feature">
+        <img class="icon-img" src="/static/images/icons/police.svg">
+        <h3>Authority Assisted</h3>
+        <span class="label">Law Enforcement</span>
+        <p>Only authorised officers can initiate actions</p>
+    </div>
+
+    <div class="feature">
+        <img class="icon-img" src="/static/images/icons/consent.svg">
+        <h3>User Consent</h3>
+        <span class="label">Opt-In Only</span>
+        <p>Citizen consent is mandatory at every stage</p>
+    </div>
+
+    <div class="feature">
+        <img class="icon-img" src="/static/images/icons/legal.svg">
+        <h3>Lawful by Design</h3>
+        <span class="label">Indian Law</span>
+        <p>Aligned with Indian legal frameworks</p>
+    </div>
+
+</section>
+
+<link rel="stylesheet" href="/static/css/join-us.css?v=2">
+
+
+
+
+
+
+<footer>
+    <div class="social">
+        <a href="https://www.instagram.com/sat.india25/" target="_blank">Instagram</a>
+        <a href="https://www.linkedin.com/company/sushaastra-technology-sat/" target="_blank">LinkedIn</a>
+    </div>
+
+<p>
+    © 2025 SAT India All rights reserved · Lawful · Privacy-First |
+    Building a safer digital India with ethical AI
+</p>
+
+<p class="footer-links">
+    <a href="/legal-terms">Legal & Terms</a>
+    |
+    <a href="/privacy-policy">Privacy Policy</a>
+</p>
+
+
+</footer>
+
+<script>
+let scale = 1;
+let lastTap = 0;
+
+function openViewer(src) {
+    const viewer = document.getElementById('imageViewer');
+    const img = document.getElementById('viewerImage');
+
+    img.src = src;
+    scale = 1;
+    img.style.transform = `scale(${scale})`;
+
+    viewer.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeViewer() {
+    const viewer = document.getElementById('imageViewer');
+    viewer.style.display = 'none';
+    document.body.style.overflow = '';
+}
+
+/* Click outside image closes viewer (desktop + TV mouse) */
+document.getElementById('imageViewer').addEventListener('click', function (e) {
+    if (e.target.id === 'imageViewer') {
+        closeViewer();
+    }
+});
+
+/* ESC key (desktop only) */
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        closeViewer();
+    }
+});
+
+/* Mouse wheel zoom (desktop) */
+document.getElementById('viewerImage').addEventListener('wheel', function (e) {
+    e.preventDefault();
+    scale += (e.deltaY < 0) ? 0.1 : -0.1;
+    scale = Math.min(Math.max(scale, 1), 3);
+    this.style.transform = `scale(${scale})`;
+});
+
+/* Double-tap zoom (mobile) */
+document.getElementById('viewerImage').addEventListener('touchend', function (e) {
+    const now = new Date().getTime();
+    if (now - lastTap < 300) {
+        scale = (scale === 1) ? 2 : 1;
+        this.style.transform = `scale(${scale})`;
+    }
+    lastTap = now;
+});
+</script>
+    <!-- other scripts -->
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const reveals = document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+            });
+        }, { threshold: 0.2 });
+
+        reveals.forEach(el => observer.observe(el));
+    });
+    </script>
+
+<script src="/static/js/ui.js?v=1"></script>
+
+</body>
+</html>

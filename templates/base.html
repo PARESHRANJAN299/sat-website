@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SAT India</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+
+
+    <!-- Apple-style rendering hints -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- SEO + Trust Meta -->
+    <meta name="description" content="SAT India – Privacy-first, lawful, citizen-controlled digital safety platform built with ethical AI.">
+    <meta name="keywords" content="SAT India, digital safety, privacy-first AI, lawful technology, cyber security India, ethical AI, data protection">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="SAT India">
+
+<!-- Open Graph (SEO / Sharing) -->
+    <meta property="og:title" content="SAT India – Privacy & Lawful Digital Safety">
+    <meta property="og:description" content="Building a safer digital India with privacy-first, lawful and ethical AI.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sat.net.in">
+    <meta property="og:image" content="{{ url_for('static', filename='images/og-cover.png') }}">
+    
+</head>
+
+<body>
+    
+ <!-- ✅ FLASH MESSAGES (GLOBAL, ONCE) -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+    <img class="logo"
+         src="{{ url_for('static', filename='images/sat-logo.png') }}"
+         alt="SAT Logo">
+
+    <ul class="nav-right">
+        <li><a href="/">Home</a></li>
+        <li><a href="/why-sat">Why SAT</a></li>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/privacy-law">Privacy & Law</a></li>
+        <li><a href="/join-us">Join Us</a></li>
+    </ul>
+</nav>
+
+<!-- ================= PAGE CONTENT ================= -->
+<main class="page-content">
+  {% block content %}{% endblock %}
+</main>
+
+<!-- ================= TRUST FOOTER (ISOLATED) ================= -->
+{% include "partials/site_footer_trust.html" %}
+
+
+
+<!-- ================= CORE JS (SAFE & GUARDED) ================= -->
+<script>
+(function () {
+    "use strict";
+
+    /* ----------------------
+       IMAGE VIEWER (SAFE)
+    ---------------------- */
+    let scale = 1;
+    let lastTap = 0;
+
+    const viewer = document.getElementById('imageViewer');
+    const viewerImage = document.getElementById('viewerImage');
+
+    function openViewer(src) {
+        if (!viewer || !viewerImage) return;
+
+        viewerImage.src = src;
+        scale = 1;
+        viewerImage.style.transform = `scale(${scale})`;
+        viewer.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeViewer() {
+        if (!viewer) return;
+
+        viewer.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    if (viewer && viewerImage) {
+
+        /* Click outside image closes viewer */
+        viewer.addEventListener('click', function (e) {
+            if (e.target.id === 'imageViewer') {
+                closeViewer();
+            }
+        });
+
+        /* ESC key */
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeViewer();
+            }
+        });
+
+        /* Mouse wheel zoom (desktop) */
+        viewerImage.addEventListener('wheel', function (e) {
+            e.preventDefault();
+            scale += (e.deltaY < 0) ? 0.1 : -0.1;
+            scale = Math.min(Math.max(scale, 1), 3);
+            viewerImage.style.transform = `scale(${scale})`;
+        });
+
+        /* Double-tap zoom (mobile) */
+        viewerImage.addEventListener('touchend', function () {
+            const now = Date.now();
+            if (now - lastTap < 300) {
+                scale = (scale === 1) ? 2 : 1;
+                viewerImage.style.transform = `scale(${scale})`;
+            }
+            lastTap = now;
+        });
+    }
+
+    /* ----------------------
+       REVEAL OBSERVER (SAFE)
+    ---------------------- */
+    document.addEventListener("DOMContentLoaded", () => {
+        const reveals = document.querySelectorAll(".reveal");
+        if (!reveals.length) return;
+
+        const observer = new IntersectionObserver(
+            entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            },
+            { threshold: 0.2 }
+        );
+
+        reveals.forEach(el => observer.observe(el));
+    });
+
+})();
+</script>
+<script>
+    
+/* ===============================
+   JS ERROR TELEMETRY (SENTRY-STYLE)
+   Privacy-safe, silent
+================================ */
+
+(function () {
+    const TELEMETRY_ENDPOINT = "/client-error";
+
+    function sendError(payload) {
+        try {
+            navigator.sendBeacon(
+                TELEMETRY_ENDPOINT,
+                JSON.stringify(payload)
+            );
+        } catch (e) {
+            // fail silently
+        }
+    }
+
+    window.addEventListener("error", function (event) {
+        sendError({
+            type: "js_error",
+            message: event.message,
+            source: event.filename,
+            line: event.lineno,
+            column: event.colno,
+            userAgent: navigator.userAgent,
+            url: window.location.href,
+            time: new Date().toISOString()
+        });
+    });
+
+    window.addEventListener("unhandledrejection", function (event) {
+        sendError({
+            type: "promise_rejection",
+            message: String(event.reason),
+            userAgent: navigator.userAgent,
+            url: window.location.href,
+            time: new Date().toISOString()
+        });
+    });
+})();
+</script>
+
+<!-- ================= OPTIONAL UI SCRIPT ================= -->
+<script src="{{ url_for('static', filename='js/ui.js') }}?v=1"></script>
+
+</body>
+</html>

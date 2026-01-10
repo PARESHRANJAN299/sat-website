@@ -1,0 +1,75 @@
+/* =========================================================
+   SAT TRUST & LEGAL FOOTER
+   - Isolated namespace
+   - Zero impact on other pages
+   - SEO & accessibility safe
+========================================================= */
+
+/* =========================
+   TRUST FOOTER – BASE SKIN
+   ========================= */
+
+.site-footer {
+  background: #0f172a;
+  color: #e5e7eb;
+  padding: 0.75rem 1.5rem;
+}
+
+/* ================= ACCESSIBILITY ================= */
+@media (prefers-reduced-motion: reduce) {
+  .site-footer * {
+    transition: none !important;
+  }
+}
+
+/* =========================
+   CONSENT + TRUST
+   ========================= */
+
+.consent {
+  margin-top: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: #d1d5db;
+  line-height: 1.4;
+}
+
+.consent input {
+  margin-top: 0.15rem;
+}
+
+.trust-note {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  letter-spacing: 0.01em;
+}
+
+/* =========================
+   FOOTER BOTTOM BAR
+   ========================= */
+
+.footer-bottom {
+  background-color: #081a33;
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+}
+
+.footer-bottom,
+.footer-bottom a {
+  color: #e5e7eb;
+}
+
+.footer-bottom a {
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,796 @@
+/* ================= AMAZON-LIKE PAGE BACKGROUND ================= */
+.join-page {
+    min-height: 100vh;
+    background:
+        radial-gradient(1200px 400px at 20% -10%, rgba(155,140,255,0.25), transparent),
+        radial-gradient(900px 300px at 90% 10%, rgba(80,160,255,0.2), transparent),
+        #f3f4f6;
+}
+
+/* ================= HERO ================= */
+.join-hero {
+    position: relative;
+    height: 85vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff;
+}
+
+/* Background video */
+.hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+
+/* Dark overlay for readability */
+.join-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 12, 30, 0.65);
+    z-index: 2;
+}
+
+/* Text layer */
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.5rem, 5vw, 3.2rem);
+    font-weight: 700;
+}
+
+.hero-content p {
+    margin-top: 12px;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Fade-in animation */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply animation to hero content */
+.hero-content {
+    animation: fadeUp 1.2s ease-out forwards;
+    opacity: 0; /* start hidden */
+}
+
+/* Optional: delay text slightly for smoother effect */
+.hero-content h1 {
+    animation: fadeUp 1.2s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+.hero-content p {
+    animation: fadeUp 1.2s ease-out forwards;
+    animation-delay: 0.4s;
+}
+
+
+/* ================= AWS-STYLE CARDS ================= */
+.join-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+
+    padding: 60px 6%;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    background: #f2f4f8;
+}
+
+
+.join-cards::-webkit-scrollbar {
+    display: none;
+}
+
+.join-cards {
+    margin-top: 40px;
+    padding-bottom: 60px;
+    background: #f2f4f8;
+}
+
+
+.info-card {
+    flex: 0 0 320px;
+    scroll-snap-align: start;
+
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(14px);
+    border-radius: 18px;
+    padding: 26px;
+
+    box-shadow:
+        0 14px 30px rgba(0,0,0,0.14),
+        inset 0 0 0 1px rgba(255,255,255,0.5);
+
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1);
+    cursor: pointer;
+}
+
+.info-card:hover {
+    transform: translateY(-6px) scale(1.03);
+}
+
+.info-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 18px 40px rgba(11, 31, 58, 0.18);
+}
+
+.info-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+@media (max-width: 768px) {
+    .join-cards {
+        padding: 40px 20px;
+        gap: 20px;
+    }
+}
+
+
+/* ================= VALUES (CLICKABLE CHIPS) ================= */
+.join-values {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    padding: 40px 20px;
+}
+
+.value-chip {
+    background: #e9eef5;
+    padding: 10px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    user-select: none;
+
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.value-chip:hover,
+.value-chip.active {
+    background: #0b1f3a;
+    color: #fff;
+    transform: scale(1.12);
+}
+
+/* =========================================================
+   SAT SUBSCRIBE SECTION – CORE STYLES
+   Purpose:
+   - Controls ONLY the Subscribe section
+   - Does NOT affect footer, navbar, or other pages
+   - Background color is inherited (DO NOT override here)
+========================================================= */
+
+/* -------------------------
+   SUBSCRIBE FORM LAYOUT
+   What it does:
+   - Centers elements vertically
+   - Keeps spacing consistent across all devices
+-------------------------- */
+.join-subscribe .subscribe-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-top: 22px;
+}
+
+
+/* -------------------------
+   EMAIL INPUT – BASE STYLE
+   What it does:
+   - Comfortable size for typing
+   - Works on mobile / TV / desktop
+   - No fixed height (zoom-safe)
+-------------------------- */
+.join-subscribe .subscribe-form input[type="email"] {
+    padding: 14px 16px;
+    width: 340px;
+    max-width: 100%;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+}
+
+
+/* -------------------------
+   EMAIL INPUT – FOCUS UX
+   What it does:
+   - Subtle confidence feedback
+   - NO scaling (prevents layout break)
+   - Safe for zoom & accessibility
+-------------------------- */
+.join-subscribe .subscribe-form input[type="email"] {
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.join-subscribe .subscribe-form input[type="email"]:focus {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-color: rgba(255, 255, 255, 0.35);
+    outline: none;
+}
+
+/* -------------------------
+   CONSENT / PRIVACY NOTE
+   What it does:
+   - Styles consent checkbox text
+   - Styles trust message below form
+   - DPDP-friendly & readable
+-------------------------- */
+.privacy-note {
+    display: block;
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: #cfd8e3;
+}
+
+
+/* -------------------------
+   SUBSCRIBE BUTTON – BASE
+   What it does:
+   - Uses SAT gold tone
+   - Strong but professional CTA
+   - No aggressive animation
+-------------------------- */
+.join-subscribe .subscribe-form button {
+    padding: 14px 28px;
+    border-radius: 8px;
+    background-color: #c08a1b; /* SAT gold */
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition:
+        box-shadow 0.18s ease,
+        background-color 0.18s ease,
+        transform 0.12s ease;
+    will-change: transform;
+}
+
+/* ===============================
+   SUBSCRIBE TEXT ALIGNMENT FIX
+   Purpose:
+   - Center all text content
+   - Keep layout responsive
+   - No impact on background or UX
+=============================== */
+
+.join-subscribe {
+    text-align: center;
+}
+
+.join-subscribe p,
+.join-subscribe h2 {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===============================
+   JOIN-SUBSCRIBE BACKGROUND FIX
+   Purpose:
+   - Restore SAT website background color
+   - Keep section visually anchored
+   - No impact on UX or zoom
+=============================== */
+
+.join-subscribe {
+    background: #0b1f3a;   /* SAT primary background (use your site’s exact color) */
+    color: #ffffff;
+    padding: 80px 20px;
+}
+
+.join-subscribe {
+    padding: 70px 20px;
+}
+
+
+
+/* -------------------------
+   BUTTON – HOVER (DESKTOP ONLY)
+   What it does:
+   - Adds depth on pointer devices
+   - NOT applied on touch devices
+-------------------------- */
+@media (hover: hover) {
+    .join-subscribe .subscribe-form button:hover {
+        background-color: #b88416; /* slightly deeper gold */
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+        transform: translateY(-1px);
+    }
+}
+
+
+/* -------------------------
+   BUTTON – ACTIVE (ALL DEVICES)
+   What it does:
+   - Tap / click feedback
+   - Works on mobile & TV
+-------------------------- */
+.join-subscribe .subscribe-form button:active {
+    transform: translateY(1px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+}
+
+
+/* -------------------------
+   ACCESSIBILITY – REDUCED MOTION
+   What it does:
+   - Respects OS accessibility settings
+   - Disables motion safely
+   - DOES NOT break layout
+-------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .join-subscribe *,
+    .subscribe-form input,
+    .subscribe-form button {
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
+
+/* ================= REVEAL (SCROLL FADE-IN) ================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+    transition: all 0.7s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* ===============================
+   SCROLL REVEAL ANIMATION
+================================ */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        transition: none;
+        transform: none;
+        opacity: 1;
+    }
+}
+
+/* ===============================
+   ZOOM OVERLAY BACKGROUND
+================================ */
+.zoom-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+        circle at center,
+        rgba(30, 80, 200, 0.25),
+        rgba(5, 15, 40, 0.85)
+    );
+    backdrop-filter: blur(6px);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.zoom-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ===============================
+   CARD ZOOM EFFECT
+================================ */
+.zoom-card {
+    position: relative;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.zoom-card.zoomed {
+    transform: scale(1.18);
+    box-shadow: 0 40px 90px rgba(0, 90, 255, 0.35);
+    z-index: 1000;
+}
+
+/* Mobile safety */
+@media (max-width: 768px) {
+    .zoom-card.zoomed {
+        transform: scale(1.08);
+    }
+}
+
+/* ===============================
+   WORD / PILL ZOOM
+================================ */
+.zoom-word {
+    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.zoom-word.zoomed {
+    transform: scale(1.35);
+    background: #0b1f3a;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 120, 255, 0.35);
+}
+
+/* ===============================
+   PILL GRID ADJUSTMENT
+================================ */
+.pill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 14px;
+}
+
+/* ===============================
+   ZOOM OVERLAY (BLUE GLOW)
+================================ */
+.zoom-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 15, 35, 0.75);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 900;
+}
+
+.zoom-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ===============================
+   ZOOMED CARD (CORE PRINCIPLES)
+================================ */
+.zoom-card.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.12);
+    z-index: 1000;
+
+    max-width: min(92vw, 900px);
+    width: 100%;
+
+    background: #f8fbff;
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 0 1px rgba(0, 120, 255, 0.25),
+        0 0 60px rgba(0, 120, 255, 0.55),
+        0 0 120px rgba(0, 80, 255, 0.35);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+/* ===============================
+   CORE PRINCIPLES TEXT GLOW
+================================ */
+.zoom-card.zoomed h3 {
+    color: #0b1f3a;
+}
+
+.zoom-card.zoomed .pill {
+    background: #0b1f3a;
+    color: #ffffff;
+    box-shadow: 0 0 14px rgba(0, 120, 255, 0.45);
+    transform: scale(1.08);
+}
+
+/* ===============================
+   WORD ZOOM (INSIDE CARD)
+================================ */
+.zoom-word.zoomed {
+    transform: scale(1.35);
+    color: #005eff;
+    text-shadow: 0 0 12px rgba(0, 120, 255, 0.7);
+}
+
+
+
+
+/* ================= CORE PRINCIPLES FULL-WIDTH ================= */
+
+/* Wrapper */
+.core-wrapper {
+    padding: 80px 0;
+    display: flex;
+    justify-content: center;
+    background: transparent;
+}
+
+/* Card container */
+.core-card {
+    width: 100%;
+    max-width: min(96vw, 1800px);
+    padding: 122px 130px;
+    margin: 0 auto;
+
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    border-radius: 24px;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px rgba(255,255,255,0.6);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Title */
+.core-card h3 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #0b1f3a;
+    margin-bottom: 48px;
+    text-align: center;
+}
+
+/* ================= PILLS GRID (DESKTOP / TABLET) ================= */
+
+/* EXACTLY 2 ROWS × 4 COLUMNS */
+.pill-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 per row */
+    grid-template-rows: repeat(2, auto);   /* EXACTLY 2 rows */
+    gap: 36px;
+
+    width: 100%;
+}
+
+/* Hide scrollbar (safety) */
+.pill-grid::-webkit-scrollbar {
+    display: none;
+}
+
+/* ================= PILLS ================= */
+
+.pill {
+    padding: 26px 36px;
+    font-size: 1.15rem;
+    font-weight: 600;
+
+    background: #eef2ff;
+    border-radius: 22px;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+
+    transition:
+        transform 0.25s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+/* Hover */
+.pill:hover {
+    background: #0b1f3a;
+    color: #ffffff;
+
+    transform: translateY(-4px) scale(1.03);
+
+    box-shadow:
+        0 14px 40px rgba(11, 31, 58, 0.28),
+        0 0 0 1px rgba(11, 31, 58, 0.3);
+}
+
+/* Active / tap */
+.pill:active {
+    transform: scale(0.98);
+}
+
+/* Selected */
+.pill.active {
+    background: linear-gradient(135deg, #1b3a8a, #234db8);
+    color: #ffffff;
+
+    box-shadow:
+        0 18px 48px rgba(35, 77, 184, 0.45),
+        inset 0 0 0 1px rgba(255,255,255,0.2);
+
+    transform: scale(1.04);
+}
+
+/* ================= MOBILE: HORIZONTAL SWIPE (STILL 2 ROWS) ================= */
+
+@media (max-width: 768px) {
+
+    .core-card {
+        padding: 36px 20px;
+        border-radius: 18px;
+    }
+
+    .core-card h3 {
+        font-size: 1.8rem;
+    }
+
+    .pill-grid {
+        grid-auto-flow: column;                      /* 🔑 KEY */
+        grid-template-columns: repeat(8, minmax(260px, 1fr));
+        grid-template-rows: repeat(2, auto);         /* STILL 2 ROWS */
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        padding-bottom: 14px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .pill {
+        scroll-snap-align: start;
+        padding: 22px 28px;
+        font-size: 1.05rem;
+    }
+}
+
+.pill {
+    position: relative;
+    z-index: 1;
+    outline: none;
+}
+
+/* Prevent any accidental fullscreen/overlay behavior */
+.pill:focus,
+.pill:focus-visible {
+    outline: none;
+}
+
+/* Never allow pills to change position or background page */
+.pill,
+.pill:hover,
+.pill:active,
+.pill.active {
+    position: relative;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .pill {
+        transition: none;
+        transform: none;
+    }
+}
+
+
+
+
+.zoom-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 15, 35, 0.75);
+    backdrop-filter: blur(6px);
+    z-index: 900;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.zoom-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.zoom-card.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.12);
+    z-index: 1000;
+}
+
+/* SAFE pill zoom: NO fullscreen, NO overlay */
+.pill {
+    position: relative;
+    z-index: 1;
+}
+
+.pill:hover {
+    transform: scale(1.06);
+}
+
+.pill.active {
+    transform: scale(1.08);
+    z-index: 2; /* stays above neighbors only */
+}
+
+
+
+/* Default card */
+.select-card {
+    background: #f1f2f4;
+    border-radius: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.select-card:hover {
+    background: #e7e9ee;
+}
+
+/* Active / Selected state */
+.select-card.active {
+    background: #d9dde3; /* same tone as your screenshot */
+    box-shadow: inset 0 0 0 2px rgba(0,0,0,0.05);
+}
+
+/* ===== NAVBAR PREMIUM HOVER + ACTIVE EFFECT ===== */
+
+.navbar a,
+.nav-links a {
+    position: relative;
+    padding: 10px 18px;
+    border-radius: 8px;
+    transition: all 0.35s ease;
+    color: #111;
+    text-decoration: none;
+}
+
+/* Hover effect */
+.navbar a:hover,
+.nav-links a:hover {
+    background: rgba(25, 65, 160, 0.15);
+    transform: scale(1.05);
+}
+
+
+/* Active (clicked) state */
+.navbar a.active,
+.nav-links a.active {
+    background: linear-gradient(135deg, #1b3a8a, #234db8);
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+    transform: scale(1.06);
+}

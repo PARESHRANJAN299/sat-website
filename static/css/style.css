@@ -1,0 +1,1025 @@
+
+
+/* ===============================
+   GLOBAL PAGE LAYOUT (DO NOT MOVE)
+   =============================== */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+}
+
+/* GLOBAL RESPONSIVE BASE */
+html {
+    font-size: 16px; /* base reference */
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+}
+
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+section {
+    margin: 0;
+}
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;              /* LOCK HEIGHT */
+    padding: 0 45px;           /* REMOVE vertical padding */
+    background: #ffffff;
+    border-bottom: 1px solid #e6e6e6;
+}
+.navbar img {
+    height: 200px;      /* base size */
+    width: auto;
+    transform: scale(1.1);   /* 👈 THIS IS THE MAGIC */
+    transform-origin: left center;
+}
+
+
+ /*
+.navbar img {
+    max-height: 244px;   --control logo size here 
+    width: auto;
+    object-fit: contain;
+} */
+
+.nav-right {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: #0b1f3a;
+    font-weight: 600;
+}
+
+/* ===== LAYOUT CONTAINER ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-inline: clamp(16px, 4vw, 40px);
+}
+
+/*
+************************************************************************************ this for image section
+*/
+/* HERO */
+.hero {
+    min-height:min(78vh, 720px);
+    background:
+        linear-gradient(rgba(10,30,60,.58), rgba(10,30,60,.58)),
+        url("../images/hero.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 40px 20px;
+    color: #fff;
+}
+
+.hero-content {
+    max-width: 1980px;
+    margin: auto;
+}
+
+.hero h1 {
+    font-size: clamp(2.6rem, 4vw, 3rem);
+    line-height: 1.25;
+    margin-bottom: 1.4rem;
+}
+.hero p {
+    max-width: 980px;
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
+    line-height: 1.65;
+    margin-bottom: 1.8rem;
+    margin-left: 0;   /* keeps it left-aligned */
+}
+
+/* ================= HERO ACTION BUTTONS =======Home - Page========== */
+
+.hero-actions {
+    display: flex;
+    justify-content: center;   /* CENTER horizontally */
+    align-items: center;
+    gap: 20px;
+
+    margin-top: 28px;
+    flex-wrap: wrap;           /* Mobile-safe */
+}
+
+/* Buttons base */
+.hero-actions .btn {
+    min-width: 160px;
+    padding: 14px 26px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Primary (Learn More) */
+.hero-actions .btn.primary {
+    background: #f4a11e;
+    color: #0b1f3a;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+}
+
+/* Secondary (Our Mission) */
+.hero-actions .btn.secondary {
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid rgba(255,255,255,0.7);
+}
+
+/* Hover (desktop only) */
+@media (hover: hover) {
+    .hero-actions .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 26px rgba(0,0,0,0.25);
+    }
+}
+
+/* Mobile tuning */
+@media (max-width: 640px) {
+    .hero-actions {
+        gap: 14px;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+        max-width: 260px;
+    }
+}
+
+
+/* BUTTONS */
+.hero-buttons {
+    display: flex;
+    gap: 18px;
+}
+
+.btn {
+    padding: 14px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.primary {
+    background: #d18b13;
+    color: #fff;
+}
+
+.secondary {
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+/* =========================
+   This Block is for Recovery Matters — Not Just Blocking GRID FIX - | Home page| - Start of this section-----
+========================= */
+
+/* PHONE LOSS */
+.phone-loss {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 70px;
+    padding: 40px 60px;
+    align-items: center;
+    overflow: hidden;
+}
+
+.phone-loss::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            rgba(246, 248, 251, 0.82),
+            rgba(246, 248, 251, 0.82)
+        ),
+        url("../images/parliament.jpg") center / cover no-repeat;
+    z-index: 0;
+}
+
+.phone-loss > * {
+    position: relative;
+    z-index: 1;
+}
+
+.phone-loss img {
+    width: 85%;
+}
+
+.phone-loss h2 {
+    font-size: 2.3rem;
+    color: #0b1f3a;
+    margin-bottom: 20px;
+}
+
+.phone-loss p {
+    color: #444;
+    line-height: 1.7;
+}
+.text-block {
+    position: relative;
+    padding: 34px 44px;
+}
+
+.text-block::before {
+    content: "";
+    position: absolute;
+    inset: -25px -35px;
+    background: url("../images/brush-gold.png") center / contain no-repeat;
+    opacity: 0.20;
+    z-index: 0;
+}
+
+/* Text always on top */
+.text-block > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================
+   This Block is for Recovery Matters — Not Just Blocking GRID FIX - | Home page| - End of this section-----
+========================= */
+
+/* =========================
+   This BLock is for FEATURE GRID FIX ------- 6th Card in the | Home page| Start-----
+========================= */
+/* =====================================================================
+   FEATURE GRID FIX (AUTHORITATIVE OVERRIDE)
+   Purpose:
+   - Controls feature card grid layout (2x3 desktop, responsive)
+   - Centers icons and text intentionally
+   - Prevents layout break at 200–300% zoom
+   - HTML MUST NOT be changed without updating this block
+   Safe to modify ONLY if feature layout issues appear
+===================================================================== */
+
+
+/* When FEATURE is a SECTION → GRID CONTAINER */
+section.feature.active {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 42px;
+
+    background: #eef2f7;
+    padding: clamp(40px, 6vw, 80px);
+    border-radius: 0;
+}
+
+/* Inner FEATURE cards (DIVs) */
+section.feature.active > .feature {
+    background: #ffffff;
+    padding: 36px 24px;
+    border-radius: 14px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.06);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+/* Hover / focus animation */
+@media (hover: hover) {
+    section.feature.active > .feature:hover {
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 22px 60px rgba(0,0,0,0.14);
+    }
+}
+
+/* =========================
+   ZOOM SAFETY (200–300%)
+========================= */
+section.feature.active {
+    overflow: visible;
+}
+
+section.feature.active > .feature {
+    min-width: 0; /* critical for zoom */
+}
+
+/* =========================
+   MOBILE REFINEMENT
+========================= */
+@media (max-width: 640px) {
+    section.feature.active {
+        gap: 26px;
+        padding: 30px 20px;
+    }
+}
+
+/* =========================
+   FEATURE CARD TEXT ALIGNMENT
+   (HTML UNCHANGED)
+========================= */
+
+/* Treat section.feature.active as grid container */
+section.feature.active {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 42px;
+    background: #eef2f7;
+    padding: clamp(40px, 6vw, 80px);
+}
+
+/* Feature cards */
+section.feature.active > .feature {
+    background: #ffffff;
+    padding: 36px 24px;
+    border-radius: 14px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.06);
+
+    /* 🔑 THIS IS THE TEXT ALIGNMENT */
+    text-align: center;
+}
+
+/* Center icons explicitly */
+section.feature.active > .feature .icon-img {
+    margin: 0 auto 12px;
+    display: block;
+}
+
+/* Keep text readable on large screens */
+section.feature.active > .feature p {
+    max-width: 32ch;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* =========================
+   This BLock is for FEATURE GRID FIX ------- for 6th Card in the Home page of the website **end**-----
+========================= */
+/* =====================================================================
+   FEATURE GRID FIX (AUTHORITATIVE OVERRIDE)
+   Purpose:
+   - Controls feature card grid layout (2x3 desktop, responsive)
+   - Centers icons and text intentionally
+   - Prevents layout break at 200–300% zoom
+   - HTML MUST NOT be changed without updating this block
+   Safe to modify ONLY if feature layout issues appear
+===================================================================== */
+
+
+/* =========================Home Page icon section/block================Start============================
+   UI STABILITY & TYPOGRAPHY
+   Purpose:
+   - Normalize feature icons and card text
+   - Ensure footer contrast & spacing
+   - Prevent mobile layout break
+   - Maintain readability at high zoom levels
+===================================================================== */
+/* ICON FIX (IMPORTANT) */
+.icon-img {
+    width: 64px;
+    height: 64px;
+    display: block;
+    margin: 0 auto 12px;
+    object-fit: contain;
+}
+
+.feature h3 {
+    color: #0b1f3a;
+    margin-bottom: 6px;
+}
+
+.label {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+    background: #e4ebf6;
+    color: #243a5e;
+}
+
+.feature p {
+    color: #555;
+    font-size: .95rem;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .nav-right {
+        gap: 14px;
+    }
+
+    .hero {
+        padding: 60px 20px;
+        text-align: left;
+    }
+
+    .phone-loss {
+        flex-direction: column;
+        gap: 24px;
+        padding: 30px 20px;
+    }
+
+    footer {
+        text-align: center;
+    }
+}
+/* =====================================================================
+   FEATURE ICON UX CORE (ENHANCEMENT LAYER) start
+   Purpose:
+   1) Reinforce icon–meaning connection (subtle micro-UX)
+   2) Improve semantic visual hierarchy (icon vs text)
+   3) Ensure SVG visibility in dark mode (no inversion)
+   4) Provide keyboard focus feedback for accessibility
+   5) Prevent layout shift during icon load (CLS-safe)
+   6) Support non-intrusive accessibility semantics (ALT-friendly)
+   Notes:
+   - MUST live directly under /* ICON FIX (IMPORTANT) */
+  /*  - Designed to EXTEND existing rules, not override them
+   - Safe at 200–300% zoom, mobile, desktop, TV
+===================================================================== */
+
+/* ---------- 1️⃣ Icon–Meaning Reinforcement (Micro-UX) ---------- */
+/* Subtle emphasis when user engages with a feature card */
+section.feature.active > .feature:hover .icon-img,
+section.feature.active > .feature:focus-within .icon-img {
+    transform: scale(1.08);
+    transition: transform 0.28s ease;
+}
+
+/* ---------- 2️⃣ Semantic Weighting (Icon vs Text Balance) ---------- */
+/* Keep icons visually important but not dominant */
+.icon-img {
+    opacity: 0.95;
+}
+
+section.feature.active > .feature:hover .icon-img {
+    opacity: 1;
+}
+
+/* ---------- 3️⃣ Theme-Safe SVG Handling (Dark Mode) ---------- */
+/* Preserve icon clarity without color inversion */
+[data-theme="dark"] .icon-img {
+    filter: brightness(1.05);
+}
+
+/* ---------- 4️⃣ Focus Ring for Cards (Accessibility) ---------- */
+/* Visible context for keyboard and assistive users */
+section.feature.active > .feature:focus-within {
+    outline: 3px solid rgba(37, 99, 235, 0.55);
+    outline-offset: 4px;
+}
+
+/* ---------- 5️⃣ Icon Load Stability (No Layout Shift) ---------- */
+/* Prevent CLS if SVGs load slowly or late */
+.icon-img {
+    aspect-ratio: 1 / 1;
+}
+
+/* ---------- 6️⃣ Icon Meaning Hint (Non-intrusive) ---------- */
+/* Supports screen readers via existing alt="" attributes */
+/* (No visual tooltip, no JS, no distraction) */
+.icon-img[alt] {
+    /* Semantic hook only — required for accessibility */
+    pointer-events: auto;
+}
+
+ /*FEATURE ICON UX CORE (ENHANCEMENT LAYER)----------------Closed-----------------
+ this is for home page of the website*/
+
+
+
+
+
+
+/* ===========================================Page Why SAT============================================== */
+
+/* ============================Starting=================================================
+   WHY SAT – FEATURE & TRUST GRID
+   =============================================================================
+   Purpose:
+   - Present core trust principles (Privacy, Consent, Lawfulness, Authority)
+   - Ensure clarity, symmetry, and credibility on first scroll
+   - Designed for government-grade clarity (not marketing fluff)
+
+   UX / Layout Principles:
+   - Fixed card rhythm (2 rows × 3 columns on large screens)
+   - Auto-fit grid ensures layout stability up to 300% zoom
+   - Text and icon alignment centered for fast scanning
+   - Cards remain readable on TV, tablet, mobile, and desktop
+
+   Accessibility:
+   - Text never overlaps icons at any zoom level
+   - Icons are decorative + semantic (via alt attributes)
+   - Cards support keyboard focus and screen readers
+   - Color contrast tuned for WCAG AA+ compliance
+
+   Performance & Stability:
+   - No layout shift when icons load (CLS-safe)
+   - SVGs scale without blurring on high-DPI displays
+   - No JS dependency for layout integrity
+
+   NOTE:
+   - HTML must NOT be changed for layout fixes
+   - All visual corrections should happen inside this block only
+   ============================================================================= */
+
+
+/* WHY SAT IMAGE FIX */
+/* Container for text + image side by side */
+.info-section {
+    padding: 50px 20px;
+    background: #f5f7fa;
+}
+
+.info-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap; /* responsive on mobile */
+}
+
+/* Left text styling */
+.info-text-flag {
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 153, 51, 0.05) 33%,   /* Very light Saffron */
+        rgba(255, 255, 255, 0.05) 33% 66%, /* Almost transparent White */
+        rgba(19, 136, 8, 0.05) 66%      /* Very light Green */
+    );
+    padding: 20px;
+    border-radius: 8px;
+    color: #1a1a1a; /* text color */
+}
+
+/* Right image box styling */
+.info-image-box {
+    flex: 1 1 600px;
+    padding: 10px;
+    border: 3px solid #1e3a8a; /* Blue border */
+    border-radius: 12px;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Image inside box */
+.info-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Smooth zoom on hover */
+.info-image:hover {
+    transform: scale(1.03);
+    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.28);
+}
+
+
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .info-container {
+        flex-direction: column; /* stack text + image */
+        gap: 20px;
+    }
+}
+
+/* ============================
+   End WHY SAT Page here 
+   ============================ */
+
+
+
+/* =============================== ============Page=HOW IT WORKS============-=====================================================
+ 
+/* =============================================================================
+   HOW IT WORKS – VISUAL EXPLANATION FLOW
+   =============================================================================
+   Purpose:
+   - Explain SAT’s process visually without cognitive overload
+   - Reduce text dependency using diagrams and motion hierarchy
+   - Build trust through transparency and lawful sequencing
+
+   Visual Hierarchy:
+   - Hero video sets emotional + contextual tone
+   - Overlay ensures text readability in all themes
+   - Cards explain steps in a left-to-right / top-to-bottom flow
+   - Each visual card stands alone (no required order dependency)
+
+   Motion & Interaction:
+   - Subtle hover lift (desktop only) for affordance
+   - Zoom-in interaction supports inspection without navigation
+   - Motion disabled automatically if prefers-reduced-motion is enabled
+
+   Accessibility:
+   - Zoom interactions do not break layout at 200–300% scale
+   - Touch, mouse, keyboard all supported
+   - Fullscreen viewer has clear close target (mobile-safe)
+   - No auto-playing audio (WCAG compliant)
+
+   Performance:
+   - Videos use object-fit to avoid reflow
+   - Images are CLS-safe with predictable dimensions
+   - Animations use transform only (GPU accelerated)
+
+   NOTE:
+   - Do NOT add JS-based layout logic here
+   - Visual consistency must be preserved across themes
+   ============================================================================= */
+
+
+.how-hero {
+    background: linear-gradient(135deg, #0b1f3a, #0f2e5a);
+    color: #ffffff;
+    padding: clamp(60px, 8vw, 110px) 20px;
+    text-align: center;
+}
+
+.how-hero h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.how-hero p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    opacity: 0.9;
+}
+.hero-subtitle {
+    font-size: 0.95rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.92);
+    opacity: 0.85;
+    margin-bottom: 14px;
+}
+
+
+/* ================= VIDEO HERO : HOW IT WORKS ================= */
+
+.video-hero {
+    position: relative;
+    min-height: 75vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff;
+}
+
+/* Background video */
+.hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    transform: scale(1.1);
+    filter: brightness(0.85) contrast(1.05);
+    will-change: transform;
+}
+
+/* Smooth cinematic motion */
+@keyframes slowZoom {
+    from { transform: scale(1.08); }
+    to   { transform: scale(1.15); }
+}
+
+.hero-video {
+    animation: slowZoom 24s ease-in-out infinite alternate;
+}
+
+/* Dark overlay */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(6, 15, 35, 0.65),
+        rgba(6, 15, 35, 0.85)
+    );
+    z-index: 1;
+}
+
+/* Text above video */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 80px 20px;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.6rem, 4vw, 3.4rem);
+    font-weight: 700;
+    text-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+.hero-content p {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .hero-video {
+        animation: none;
+        transform: none;
+    }
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    .hero-video {
+        transform: scale(1.05);
+        filter: brightness(0.9);
+    }
+}
+
+
+
+/* ============================
+   VISUAL SECTION CONTAINER
+   ============================ */
+.how-visuals {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: clamp(40px, 6vw, 80px) 20px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: clamp(30px, 4vw, 60px);
+}
+
+
+/* ============================
+   VISUAL CARD (DIAGRAM)
+   ============================ */
+.visual-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: clamp(20px, 3vw, 32px);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.08);
+
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    text-align: center;
+}
+
+.visual-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 60px rgba(0,0,0,0.12);
+}
+
+
+/* ============================
+   DIAGRAM IMAGE
+   ============================ */
+.visual-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 14px;
+    transition: transform 0.4s ease;
+}
+
+/* Gentle zoom on hover (professional, not flashy) */
+.visual-card:hover img {
+    transform: scale(1.03);
+}
+
+
+/* ============================
+   DIAGRAM TITLE
+   ============================ */
+.visual-card h3 {
+    margin-top: 18px;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    font-weight: 600;
+    color: #0b1f3a;
+}
+
+/* ===== CLICK TO READ (BOOK VIEW) ===== */
+
+.zoomable-image {
+    cursor: zoom-in;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Expanded image */
+.zoomable-image.active {
+    cursor: zoom-out;
+    position: relative;
+    z-index: 20;
+    transform: scale(1.15);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+
+/* When one image is active, dim others */
+.zoomable-image:not(.active) {
+    opacity: 0.85;
+}
+
+/* On mobile – prevent overflow */
+@media (max-width: 768px) {
+    .zoomable-image.active {
+        transform: scale(1.05);
+    }
+}
+
+/* =========================
+   SMALL SQUARE PREVIEW
+========================= */
+
+.image-preview {
+    display: flex;
+    justify-content: center;
+    margin: 40px auto;
+}
+
+.image-preview img {
+    width: 260px;
+    height: auto;
+    padding: 10px;
+    background: #ffffff;
+    border: 2px solid #e5e7eb; /* light white/grey border */
+    border-radius: 6px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+.image-preview img:hover {
+    transform: scale(1.03);
+}
+
+/* =========================
+   FULLSCREEN IMAGE VIEWER
+========================= */
+
+.image-viewer {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.92);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.image-viewer img {
+    max-width: 92vw;
+    max-height: 92vh;
+    transition: transform 0.15s ease;
+    transform-origin: center center;
+    cursor: grab;
+}
+
+/* Close button (universal) */
+.viewer-close {
+    position: fixed;
+    top: 18px;
+    right: 20px;
+    font-size: 28px;
+    background: rgba(0,0,0,0.6);
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+/* Better mobile touch target */
+@media (max-width: 768px) {
+    .viewer-close {
+        width: 52px;
+        height: 52px;
+        font-size: 30px;
+    }
+}
+
+.info-card.active,
+.pill.active {
+    background: #f8fbff;
+    box-shadow:
+        0 0 0 2px rgba(37, 99, 235, 0.65),
+        0 0 35px rgba(37, 99, 235, 0.9);
+}
+
+/* NAV ACTIVE STATE */
+.navbar a {
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+
+/* Active item */
+.navbar a.active {
+    background: #1e3a8a; /* GOV blue */
+    color: #ffffff;
+    transform: scale(1.08);
+}
+
+/* Others stay clean */
+.navbar a:not(.active) {
+    background: transparent;
+    color: #0b1f3a;
+}
+
+/* --- Force hero text clarity (TEXT ONLY) --- */
+
+.video-hero .hero-content h1 {
+    color: #ffffff;
+    opacity: 1;
+}
+
+.video-hero .hero-content .hero-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    opacity: 1;
+}
+
+/* --- Hero text water-drop animation --- */
+
+.hero-content {
+    animation: dropIn 1.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    transform: translateY(-40px);
+    opacity: 0;
+}
+
+@keyframes dropIn {
+    0% {
+        transform: translateY(-40px);
+        opacity: 0;
+    }
+    70% {
+        transform: translateY(6px); /* slight overshoot (water drop feel) */
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ==========================================Page HOW IT WORKS End ================================================================*/
+
+/* Legal & Terms | Privacy Policy*/
+.legal-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    line-height: 1.7;
+}
+
+.legal-page h1 {
+    margin-bottom: 20px;
+}
+
+.legal-page h2 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.legal-page ul {
+    margin-left: 20px;
+}
+

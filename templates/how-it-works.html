@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}
+How SAT Works – SAT India
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="how-hero video-hero">
+
+    <!-- Background Video -->
+    <video class="hero-video"
+           autoplay
+           muted
+           loop
+           playsinline
+           preload="metadata">
+        <source src="{{ url_for('static', filename='videos/how-it-works.mp4') }}" type="video/mp4">
+    </video>
+
+<!-- Text -->
+
+<div class="hero-overlay"></div>
+
+<div class="hero-content">
+    <h1 style="color:#ffffff; opacity:1; margin-bottom:0;">
+        How SAT Works
+    </h1>
+
+    <p style="
+        margin-top:12px;
+        font-size:14px;
+        letter-spacing:1.5px;
+        text-transform:uppercase;
+        color:rgba(255,255,255,0.85);
+    ">
+        ACCOUNTABILITY IS DESIGNED IN.
+    </p>
+</div>
+
+
+
+
+
+</section>
+
+
+<section class="how-visuals">
+
+    <div class="image-preview">
+        <img
+            src="{{ url_for('static', filename='images/how/app2-architecture.png') }}"
+            alt="SAT Assistants Platform Architecture"
+            onclick="openViewer(this.src)"
+        >
+    </div>
+
+    <div class="image-preview">
+        <img
+            src="{{ url_for('static', filename='images/how/integrated-architecture.png') }}"
+            alt="Integrated Mobile Recovery Architecture"
+            onclick="openViewer(this.src)"
+        >
+    </div>
+
+</section>
+
+<!-- FULLSCREEN VIEWER -->
+<div id="imageViewer" class="image-viewer">
+    <button class="viewer-close" onclick="closeViewer()">✕</button>
+    <img id="viewerImage" src="">
+    <img src="..." onclick="openViewer(this.src)">
+</div>
+
+{% endblock %}
+

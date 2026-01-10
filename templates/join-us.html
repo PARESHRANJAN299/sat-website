@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}
+Join Us – SAT India
+{% endblock %}
+
+{% block content %}
+
+<div class="join-page">
+
+    <section class="join-hero">
+    <!-- Background Video -->
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/join_us.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Overlay Content -->
+    <div class="hero-content">
+        <h1>🤝 Join SAT</h1>
+        <p>Privacy-first • Lawful • Citizen-centric</p>
+    </div>
+    </section>
+
+    <section class="join-cards">
+    <div class="core-wrapper">
+        <div class="info-card reveal zoom-card core-card">
+            <h3>🧭 Core Principles</h3>
+
+            <div class="pill-grid">
+                <span class="pill zoom-word">🔐 Privacy</span>
+                <span class="pill zoom-word">🛡️ Security</span>
+                <span class="pill zoom-word">⚖️ Compliance</span>
+                <span class="pill zoom-word">🏛️ Govt Ethics</span>
+                <span class="pill zoom-word">🧠 Cybersecurity</span>
+                <span class="pill zoom-word">📜 Legal Integrity</span>
+                <span class="pill zoom-word">🧩 Consent</span>
+                <span class="pill zoom-word">🔍 Transparency</span>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="join-subscribe">
+    
+    <!-- Title -->
+    <h2>📩 Subscribe for SAT Updates</h2>
+
+    <!-- Subtext -->
+   <p>
+       Authorized SAT communications including platform announcements & lawful advisories<br>
+       <span class="subtitle-note">SAT news • Legal updates • Service notifications</span>
+  </p>
+
+
+    <!-- Subscribe Form -->
+    <form method="POST" action="/subscribe" class="subscribe-form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <!-- Email -->
+        <input
+            type="email"
+            name="email"
+            placeholder="Your official email address"
+            required
+        >
+
+        <!-- Consent (single source of truth) -->
+        <label class="privacy-note consent-inline">
+            <input type="checkbox" name="consent" required>
+            I agree to receive official SAT updates
+        </label>
+
+        <!-- Submit -->
+        <button type="submit">
+            🔔 Subscribe
+        </button>
+    </form>
+
+    <!-- Trust Assurance -->
+    <small class="privacy-note trust-note">
+        🔐 Secure transmission • 🇮🇳 India-hosted systems • No spam • No sharing
+    </small>
+
+</section>
+
+
+</div>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/join-us.css') }}">
+<script src="{{ url_for('static', filename='js/join-us.js') }}" defer></script>
+<script src="join-us.js"></script>
+
+<script>
+  document.querySelectorAll('.pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.pill')
+        .forEach(p => p.classList.remove('active'));
+
+      pill.classList.add('active');
+    });
+  });
+</script>
+
+<div class="zoom-card">
+  <!-- card content -->
+</div>
+<div class="zoom-overlay"></div>
+
+<script>
+document.querySelectorAll('.pill').forEach(pill => {
+  pill.addEventListener('click', e => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    document.querySelectorAll('.pill')
+      .forEach(p => p.classList.remove('active'));
+
+    pill.classList.add('active');
+  });
+});
+</script>
+
+<script>
+const overlay = document.querySelector('.zoom-overlay');
+
+document.querySelectorAll('.zoom-card').forEach(card => {
+  card.addEventListener('click', () => {
+    card.classList.add('zoomed');
+    overlay.classList.add('active');
+  });
+});
+
+overlay.addEventListener('click', () => {
+  document.querySelectorAll('.zoom-card.zoomed')
+    .forEach(card => card.classList.remove('zoomed'));
+  overlay.classList.remove('active');
+});
+</script>
+
+
+{% endblock %}
+

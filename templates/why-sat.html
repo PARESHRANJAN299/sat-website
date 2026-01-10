@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="info-section">
+    <div class="info-container">
+        <!-- Left Text -->
+<!-- Part 1 -->
+<div class="info-text-flag">
+    <p>
+        <span class="drop-cap">🟠F</span>or millions of Indian families, a mobile phone is more than a device —
+        it holds user identity, financial access, education, and daily livelihood.
+        SAT was created to protect citizens, not to monitor them.
+        It focuses on lawful recovery, digital safety, and trust —
+        without surveillance, mass tracking, or misuse of personal data.
+    </p>
+
+    <p>
+        🟢Our mission is to empower citizens and authorities through
+        consent-based, transparent, and legally compliant technology.
+    </p>
+</div>
+
+
+
+        <!-- Right Image Box -->
+        <div class="info-image-box">
+            <img 
+                src="{{ url_for('static', filename='images/why-sat.png') }}" 
+                alt="Why SAT Exists - Privacy, Safety and Lawful Access" 
+                class="info-image"
+            >
+        </div>
+    </div>
+</section>
+
+{% endblock %}

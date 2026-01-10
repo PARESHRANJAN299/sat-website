@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>
+            Lawful Recovery.<br>
+            Consent-Based Intelligence.<br>
+            Built for India.
+        </h1>
+        <p>
+            Supporting citizens and authorities in the recovery of lost or stolen
+            mobile devices — without surveillance.
+        </p>
+       <div class="hero-actions">
+        <a href="/how-it-works" class="btn primary">Learn More</a>
+        <a href="/why-sat" class="btn secondary">Our Mission</a>
+       </div>
+
+    </div>
+</section>
+
+<section class="phone-loss">
+    <div class="text-block">
+        <h2>Recovery Matters — Not Just Blocking</h2>
+        <p>
+            Our major focus is recovering the phone, not just blocking it.
+            I come from a family where losing a phone meant losing months of savings.
+            SAT is built so others don’t feel that pain.<br><br>
+            SAT is an India-first, lawful platform designed to support citizens
+            and authorities in device loss cases.
+        </p>
+    </div>
+    <img src="{{ url_for('static', filename='images/phone-loss.jpg') }}">
+</section>
+
+<section class="feature active">
+
+    <div class="feature active">
+        <img class="icon-img" src="{{ url_for('static', filename='images/icons/privacy.svg') }}">
+        <h3>Privacy First</h3>
+        <span class="label">No Surveillance</span>
+        <p>Zero tracking, zero profiling, citizen-first design</p>
+    </div>
+
+    <div class="feature active">
+        <img class="icon-img" src="{{ url_for('static', filename='images/icons/no-tracking.svg') }}">
+        <h3>No Tracking</h3>
+        <span class="label">No Live Monitoring</span>
+        <p>Devices are never tracked in real time</p>
+    </div>
+
+    <div class="feature active">
+        <img class="icon-img" src="{{ url_for('static', filename='images/icons/fir.svg') }}">
+        <h3>FIR Verified</h3>
+        <span class="label">Legal Entry</span>
+        <p>Recovery begins only after FIR validation</p>
+    </div>
+
+    <div class="feature active">
+        <img class="icon-img" src="{{ url_for('static', filename='images/icons/police.svg') }}">
+        <h3>Authority Assisted</h3>
+        <span class="label">Law Enforcement</span>
+        <p>Only authorised officers can initiate actions</p>
+    </div>
+
+    <div class="feature active">
+        <img class="icon-img" src="{{ url_for('static', filename='images/icons/consent.svg') }}">
+        <h3>User Consent</h3>
+        <span class="label">Opt-In Only</span>
+        <p>Citizen consent is mandatory at every stage</p>
+    </div>
+
+    <div class="feature active">
+        <img class="icon-img" src="{{ url_for('static', filename='images/icons/legal.svg') }}">
+        <h3>Lawful by Design</h3>
+        <span class="label">Indian Law</span>
+        <p>Aligned with Indian legal frameworks</p>
+    </div>
+
+</section>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/join-us.css') }}?v=2">
+
+
+
+
+{% endblock %}

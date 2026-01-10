@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}
+Privacy & Law – SAT India
+{% endblock %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Privacy & Law | SAT India</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Main site CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Privacy & Law CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/privacy-law.css') }}">
+</head>
+
+<body>
+
+<!-- ================= PRIVACY HERO WITH VIDEO BACKGROUND ================= -->
+<section class="privacy-hero video-hero parallax-section">
+
+    <!-- Background video -->
+<video
+  class="hero-video"
+  src="{{ url_for('static', filename='videos/privacy_low_video.mp4') }}"
+  poster="{{ url_for('static', filename='images/privacy-poster.jpg') }}"
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="auto">
+</video>
+
+
+    <!-- Overlay for readability -->
+    <div class="hero-overlay"></div>
+
+    <!-- Existing text content -->
+    <div class="hero-content">
+        <h1 class="stagger-text">🔐 Privacy & Law</h1>
+        <p class="stagger-text">Trust-first • Citizen-controlled • Fully lawful</p>
+    </div>
+
+</section>
+
+<!-- ================= WHAT SAT WILL NEVER DO ================= -->
+<section class="privacy-section light parallax-section">
+    <h2 class="section-title blue-accent">🚫 What SAT Will Never Do</h2>
+
+    <div class="privacy-grid">
+        <div class="privacy-card reveal tilt-card">
+            <img src="{{ url_for('static', filename='images/icons/no-surveillance.svg') }}">
+            <h3>🚫 No Surveillance</h3>
+            <p>SAT does not monitor citizens or devices.</p>
+        </div>
+
+        <div class="privacy-card reveal tilt-card">
+            <img src="{{ url_for('static', filename='images/icons/no-tracking.svg') }}">
+            <h3>📍 No Live Tracking</h3>
+            <p>Devices are never tracked in real-time.</p>
+        </div>
+
+        <div class="privacy-card reveal tilt-card">
+            <img src="{{ url_for('static', filename='images/icons/no-bypass.svg') }}">
+            <h3>⛔ No Law Bypass</h3>
+            <p>No shortcuts. No unofficial access.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================= LAWFUL BY DESIGN ================= -->
+<section class="privacy-section parallax-section">
+    <h2 class="section-title reveal stagger-text">⚖️ Lawful by Design</h2>
+
+    <div class="privacy-grid">
+        <div class="privacy-card reveal tilt-card">
+            <img src="{{ url_for('static', filename='images/icons/legal.svg') }}">
+            <h3>🇮🇳 Indian Legal Framework</h3>
+            <p>Aligned with Indian IT & telecom laws.</p>
+        </div>
+
+        <div class="privacy-card reveal tilt-card">
+            <img src="{{ url_for('static', filename='images/icons/fir.svg') }}">
+            <h3>📄 FIR-Based Process</h3>
+            <p>Recovery actions begin only after FIR verification.</p>
+        </div>
+
+        <div class="privacy-card reveal tilt-card">
+            <img src="{{ url_for('static', filename='images/icons/police.svg') }}">
+            <h3>👮 Authority Assisted</h3>
+            <p>Only authorised officers can initiate actions.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================= CITIZEN CONTROL ================= -->
+<section class="privacy-section light parallax-section">
+    <h2 class="section-title blue-accent">🧑‍🤝‍🧑 Citizen Control & Consent</h2>
+
+    <div class="privacy-grid">
+        <div class="privacy-card reveal tilt-card">
+            <img src="{{ url_for('static', filename='images/icons/consent.svg') }}">
+            <h3>✅ Consent First</h3>
+            <p>Citizens remain in control at every stage.</p>
+        </div>
+
+        <div class="privacy-card reveal tilt-card">
+            <img src="{{ url_for('static', filename='images/icons/privacy.svg') }}">
+            <h3>🔒 Data Minimalism</h3>
+            <p>Only the minimum required data is processed.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================= MASTER JS ================= -->
+<script src="{{ url_for('static', filename='js/privacy-law.js') }}"></script>
+
+</body>
+</html>
+
+{% endblock %}
