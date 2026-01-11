@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy to EC2
+      - name: Deploy to EC2 (Zero Downtime)
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -22,13 +22,17 @@ jobs:
           script: |
             set -e
             cd ${{ secrets.EC2_PATH }}
+
             echo "📦 Pulling latest code..."
             git pull origin main
-            echo "🐍 Activating virtualenv..."
+
+            echo "🐍 Activating venv..."
             source venv/bin/activate
+
             echo "📦 Installing dependencies..."
-            pip install --upgrade pip
             pip install -r requirements.txt
-            echo "🔄 Restarting service..."
-            sudo systemctl restart sat
+
+            echo "🔄 Reloading Gunicorn (zero downtime)..."
+            sudo systemctl reload sat
+
             echo "✅ Deployment completed"
