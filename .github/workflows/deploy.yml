@@ -4,35 +4,51 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: true
 
 jobs:
   deploy:
+    name: Production Deploy
     runs-on: ubuntu-latest
+    environment:
+      name: production
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Deploy to EC2
+      - name: Deploy to EC2 (hardened)
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
+          timeout: 60s
+          command_timeout: 20m
+          script_stop: true
           script: |
-            set -e
-            cd ${{ secrets.EC2_PATH }}
+            set -Eeuo pipefail
 
-            echo "📦 Pulling latest code..."
-            git pull origin main
+            cd "${{ secrets.EC2_PATH }}"
+
+            echo "📦 Fetching latest code..."
+            git fetch origin main
+            git reset --hard origin/main
 
             echo "🐍 Activating virtualenv..."
             source venv/bin/activate
 
             echo "📦 Installing dependencies..."
+            pip install --upgrade pip
             pip install -r requirements.txt
 
             echo "🔄 Reloading Gunicorn (zero downtime)..."
             sudo systemctl reload sat
 
-            echo "✅ Deployment completed"
+            echo "✅ Deployment completed successfully"
