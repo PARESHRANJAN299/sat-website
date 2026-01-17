@@ -473,3 +473,145 @@ body {
 /* =============================================================================
    END OF MOBILE OPTIMIZATIONS
 ============================================================================= */
+
+
+/* =============================================================================
+   EMERGENCY FIX - FORCE VIDEO TO SHOW FULL CONTENT
+   Use this if the previous fix didn't work
+============================================================================= */
+
+/* =============================================================================
+   STEP 1: ADD THIS CODE AT THE VERY END OF YOUR CSS FILE
+   This uses !important to override any conflicting styles
+============================================================================= */
+
+/* Mobile - FORCED FIX with !important */
+@media (max-width: 768px) {
+    
+    /* Force container to auto height */
+    .privacy-hero {
+        min-height: auto !important;
+        height: auto !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #0b1f3a !important;
+    }
+    
+    /* CRITICAL: Force video to show full content */
+    .hero-video {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;  /* Remove any min-height */
+        max-height: 65vh !important;
+        
+        /* THIS IS THE KEY - MUST BE CONTAIN */
+        object-fit: contain !important;
+        object-position: center center !important;
+        
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        filter: brightness(0.85) contrast(1.05) !important;
+        
+        /* Remove any transforms or other effects */
+        transform: none !important;
+        transform-origin: center center !important;
+    }
+    
+    /* Force overlay to static positioning */
+    .hero-overlay {
+        position: static !important;
+        inset: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        background: linear-gradient(
+            180deg,
+            rgba(8,18,36,0.7),
+            rgba(8,18,36,0.9)
+        ) !important;
+        padding: 30px 0 !important;
+        margin: 0 !important;
+        display: block !important;
+    }
+    
+    /* Force content to transparent background */
+    .hero-content {
+        position: relative !important;
+        z-index: 2 !important;
+        padding: 30px 20px !important;
+        background: transparent !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        margin-top: -5px !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem !important;
+        margin-bottom: 12px !important;
+        line-height: 1.3 !important;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
+    }
+    
+    .hero-content p {
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+        text-shadow: 0 1px 4px rgba(0,0,0,0.5) !important;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 480px) {
+    .hero-video {
+        max-height: 55vh !important;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.5rem !important;
+    }
+    
+    .hero-content p {
+        font-size: 0.85rem !important;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .hero-video {
+        max-height: 50vh !important;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.3rem !important;
+    }
+}
+
+
+/* =============================================================================
+   IF ABOVE DOESN'T WORK - NUCLEAR OPTION
+   Remove ALL existing mobile video code and use only this
+============================================================================= */
+
+/*
+@media (max-width: 768px) {
+    .privacy-hero * {
+        position: static !important;
+        transform: none !important;
+    }
+    
+    .hero-video {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+        max-height: 60vh !important;
+    }
+}
+*/
