@@ -60,27 +60,14 @@ jobs:
             --instance-ids "${{ secrets.EC2_INSTANCE_ID }}" \
             --document-name "AWS-RunShellScript" \
             --comment "Deploy SAT Website from GitHub Actions" \
-            --parameters 'commands=[
-              "#!/bin/bash",
+            --parameters '{"commands":[
               "set -e",
-              "echo \"Running as: $(whoami)\"",
-              "sudo -u deploy bash << '\''DEPLOYEOF'\''",
-              "set -e",
-              "cd /var/www/sat/sat-website",
-              "echo \"📦 Fetching latest code...\"",
-              "git fetch origin main",
-              "git reset --hard origin/main",
-              "echo \"🐍 Activating virtualenv...\"",
-              "source venv/bin/activate",
-              "echo \"📦 Installing dependencies...\"",
-              "pip install --upgrade pip",
-              "pip install -r requirements.txt",
-              "echo \"✅ Code updated successfully\"",
-              "DEPLOYEOF",
-              "echo \"🔄 Reloading Gunicorn...\"",
+              "echo Running as: $(whoami)",
+              "sudo -u deploy bash -c \"cd /var/www/sat/sat-website && git fetch origin main && git reset --hard origin/main\"",
+              "sudo -u deploy bash -c \"cd /var/www/sat/sat-website && source venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt\"",
               "sudo -u deploy sudo systemctl reload sat",
-              "echo \"✅ Deployment completed successfully\""
-            ]' \
+              "echo Deployment completed successfully"
+            ]}' \
             --output text \
             --query "Command.CommandId")
           
@@ -101,53 +88,3 @@ jobs:
           
           echo "📋 Deployment output:"
           echo "$OUTPUT"
-```
-
-### **Step 3: Commit the Changes**
-
-- Commit message: `fix: deploy workflow uses deploy user with proper permissions`
-- Click **"Commit changes"** (green button)
-- Select: **"Commit directly to the main branch"**
-
----
-
-## 📊 WHAT WILL HAPPEN
-
-Once you commit:
-
-1. ⚡ GitHub Actions triggers automatically
-2. ✅ Check Commit Author (detects you as owner)
-3. ✅ Production Deploy (SSM) runs without approval
-4. 🚀 Deployment executes:
-   - Switches to `deploy` user
-   - Fetches latest code from GitHub
-   - Updates dependencies
-   - Reloads Gunicorn
-5. ✅ Website updates at https://www.sat.net.in/
-
----
-
-## 👀 WATCH IT HAPPEN
-
-After committing:
-
-1. Go to: **Actions** tab (top menu)
-2. You'll see: "fix: deploy workflow uses deploy user..."
-3. Click on it
-4. Watch both jobs complete with ✅
-
----
-
-## 🎯 EXPECTED OUTPUT
-
-You should see:
-```
-✅ Check Commit Author
-✅ Production Deploy (SSM)
-   Running as: ssm-user
-   📦 Fetching latest code...
-   🐍 Activating virtualenv...
-   📦 Installing dependencies...
-   ✅ Code updated successfully
-   🔄 Reloading Gunicorn...
-   ✅ Deployment completed successfully
