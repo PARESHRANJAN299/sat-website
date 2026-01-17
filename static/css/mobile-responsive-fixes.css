@@ -43,7 +43,7 @@
 @media (max-width: 1024px) {
     .navbar img,
     .navbar .logo {
-        height: 55px !important;
+        height: 80px !important;
         max-width: 160px !important;
     }
 }
@@ -52,7 +52,7 @@
 @media (max-width: 768px) {
     .navbar img,
     .navbar .logo {
-        height: 50px !important;
+        height: 60px !important;
         max-width: 140px !important;
         margin: 0 auto !important;
     }
