@@ -50,20 +50,24 @@ section {
     background: #ffffff;
     border-bottom: 1px solid #e6e6e6;
 }
+
+/* Add the DOT before navbar */
 .navbar img {
-    height: 200px;      /* base size */
+    height: 80px;
     width: auto;
-    transform: scale(1.1);   /* 👈 THIS IS THE MAGIC */
-    transform-origin: left center;
+    transform: none;
+    object-fit: contain;
+    max-width: 200px;
 }
 
-
- /*
+/* This commented section is fine - you can keep it or delete it */
+/*
 .navbar img {
-    max-height: 244px;   --control logo size here 
+    max-height: 244px;
     width: auto;
     object-fit: contain;
-} */
+}
+*/
 
 .nav-right {
     list-style: none;
@@ -1022,4 +1026,5 @@ section.feature.active > .feature:focus-within {
 .legal-page ul {
     margin-left: 20px;
 }
+
 
