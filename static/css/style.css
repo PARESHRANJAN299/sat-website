@@ -53,11 +53,11 @@ section {
 
 /* Add the DOT before navbar */
 .navbar img {
-    height: 80px;
+    height: 120px;
     width: auto;
     transform: none;
     object-fit: contain;
-    max-width: 200px;
+    max-width: 250px;
 }
 
 /* This commented section is fine - you can keep it or delete it */
@@ -1026,5 +1026,6 @@ section.feature.active > .feature:focus-within {
 .legal-page ul {
     margin-left: 20px;
 }
+
 
 
