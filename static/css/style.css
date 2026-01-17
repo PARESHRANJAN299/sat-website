@@ -1091,6 +1091,134 @@ section.feature.active > .feature:focus-within {
     margin-left: 20px;
 }
 
+/* =============================================================================
+   HOW IT WORKS PAGE - MOBILE VIDEO FIX
+   Add this code AT THE END of your CSS file (after Privacy & Law fix)
+============================================================================= */
+
+/* =============================================================================
+   IMPORTANT: This fixes the "How It Works" page video on mobile
+   The video hero on this page uses different classes (.video-hero, not .privacy-hero)
+============================================================================= */
+
+
+/* Mobile - Fix How It Works Video */
+@media (max-width: 768px) {
+    
+    /* Fix video hero container */
+    .video-hero {
+        min-height: auto !important;
+        height: auto !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    /* CRITICAL: Fix the background video */
+    .video-hero .hero-video {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: 65vh !important;
+        
+        /* THIS IS KEY - Show full content */
+        object-fit: contain !important;
+        object-position: center center !important;
+        
+        /* Remove all zoom/scale effects */
+        transform: none !important;
+        animation: none !important;
+        
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        filter: brightness(0.85) contrast(1.05) !important;
+    }
+    
+    /* Fix overlay positioning */
+    .video-hero .hero-overlay {
+        position: static !important;
+        inset: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        background: linear-gradient(
+            180deg,
+            rgba(6, 15, 35, 0.7),
+            rgba(6, 15, 35, 0.9)
+        ) !important;
+        padding: 30px 0 !important;
+        margin: 0 !important;
+        z-index: 1 !important;
+    }
+    
+    /* Fix text content */
+    .video-hero .hero-content {
+        position: relative !important;
+        z-index: 2 !important;
+        padding: 30px 20px !important;
+        background: transparent !important;
+        margin: 0 !important;
+        margin-top: -5px !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        
+        /* Keep the drop animation */
+        animation: dropIn 1.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards !important;
+    }
+    
+    .video-hero .hero-content h1 {
+        font-size: clamp(2rem, 4vw, 2.6rem) !important;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
+        color: #ffffff !important;
+    }
+    
+    .video-hero .hero-content p,
+    .video-hero .hero-content .hero-subtitle {
+        font-size: 0.9rem !important;
+        text-shadow: 0 1px 4px rgba(0,0,0,0.5) !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .video-hero .hero-video {
+        max-height: 55vh !important;
+    }
+    
+    .video-hero .hero-content h1 {
+        font-size: 1.8rem !important;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .video-hero .hero-video {
+        max-height: 50vh !important;
+    }
+    
+    .video-hero .hero-content h1 {
+        font-size: 1.5rem !important;
+    }
+}
+
+
+/* =============================================================================
+   SUMMARY OF CHANGES FOR "HOW IT WORKS" PAGE:
+   
+   1. Changed object-fit from "cover" to "contain"
+   2. Removed transform: scale(1.05) - no more zoom
+   3. Removed animation: slowZoom - no more animated zoom
+   4. Changed video positioning from absolute to static
+   5. Made overlay flow naturally below video
+   6. Used !important to override desktop styles
+   
+   Result: Video shows FULL content on mobile, just like Privacy & Law page!
+============================================================================= */
 
 
 
