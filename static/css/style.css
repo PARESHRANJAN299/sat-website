@@ -1,5 +1,3 @@
-
-
 /* ===============================
    GLOBAL PAGE LAYOUT (DO NOT MOVE)
    =============================== */
@@ -40,6 +38,7 @@ body {
 section {
     margin: 0;
 }
+
 /* NAVBAR */
 .navbar {
     display: flex;
@@ -51,24 +50,90 @@ section {
     border-bottom: 1px solid #e6e6e6;
 }
 
-/* Add the DOT before navbar */
-.navbar img {
-    height: 120px;
-    width: auto;
-    transform: none;
-    object-fit: contain;
-    max-width: 250px;
+/* ============================================================================
+   NAVBAR & LOGO - ALL DEVICES
+============================================================================ */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding: 0 45px;
+    background: #ffffff;
+    border-bottom: 1px solid #e6e6e6;
 }
 
-/* This commented section is fine - you can keep it or delete it */
-/*
+/* Desktop/Laptop Logo - 120px */
 .navbar img {
-    max-height: 244px;
-    width: auto;
-    object-fit: contain;
+    height: 120px !important;
+    width: auto !important;
+    transform: none !important;
+    object-fit: contain !important;
+    max-width: 250px !important;
+    display: block !important;
 }
-*/
 
+/* Large Desktop/TV (1920px+) - Bigger Logo */
+@media (min-width: 1920px) {
+    .navbar {
+        height: 90px;
+    }
+    .navbar img {
+        height: 130px !important;
+        max-width: 270px !important;
+    }
+}
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .navbar {
+        height: 75px;
+    }
+    .navbar img {
+        height: 100px !important;
+        max-width: 220px !important;
+    }
+}
+
+/* Mobile - Landscape (481px - 768px) */
+@media (max-width: 768px) and (min-width: 481px) {
+    .navbar {
+        height: auto;
+        min-height: 70px;
+        flex-direction: column;
+        padding: 12px 15px;
+        gap: 10px;
+    }
+    .navbar img {
+        height: 90px !important;
+        max-width: 200px !important;
+        margin: 0 auto;
+    }
+}
+
+/* Mobile - Portrait (320px - 480px) */
+@media (max-width: 480px) {
+    .navbar {
+        height: auto;
+        min-height: 65px;
+        padding: 10px 12px;
+    }
+    .navbar img {
+        height: 80px !important;
+        max-width: 180px !important;
+    }
+}
+
+/* Very Small Phones (below 360px) */
+@media (max-width: 360px) {
+    .navbar img {
+        height: 70px !important;
+        max-width: 160px !important;
+    }
+}
+
+/* Navigation Links */
 .nav-right {
     list-style: none;
     display: flex;
@@ -87,7 +152,6 @@ section {
     margin: 0 auto;
     padding-inline: clamp(16px, 4vw, 40px);
 }
-
 /*
 ************************************************************************************ this for image section
 */
@@ -1026,6 +1090,7 @@ section.feature.active > .feature:focus-within {
 .legal-page ul {
     margin-left: 20px;
 }
+
 
 
 
