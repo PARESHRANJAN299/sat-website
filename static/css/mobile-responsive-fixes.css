@@ -26,43 +26,82 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ============================================================================ */
 
-/* 🔥 LOGO FIX - ADD THIS AT THE TOP (BEFORE EVERYTHING ELSE) */
+/* ============================================================================
+   LOGO FIX - PROPER SIZES FOR ALL DEVICES
+   Replace your existing logo CSS with this
+============================================================================ */
 
-/* Desktop/Laptop Logo */
+/* Desktop/Laptop/TV - LARGER LOGO */
 .navbar img,
 .navbar .logo {
-    height: 60px !important;
+    height: 80px !important;  /* Increased from 60px */
     width: auto !important;
     transform: none !important;
     object-fit: contain !important;
-    max-width: 180px !important;
+    max-width: 200px !important;
     display: block !important;
 }
 
-/* Tablet Logo */
-@media (max-width: 1024px) {
+/* Large Desktop/TV (1920px+) - Even Larger */
+@media (min-width: 1920px) {
     .navbar img,
     .navbar .logo {
-        height: 80px !important;
-        max-width: 160px !important;
+        height: 90px !important;
+        max-width: 220px !important;
     }
 }
 
-/* Mobile Logo */
-@media (max-width: 768px) {
+/* Medium Desktop (1440px - 1919px) */
+@media (max-width: 1919px) and (min-width: 1440px) {
+    .navbar img,
+    .navbar .logo {
+        height: 80px !important;
+        max-width: 200px !important;
+    }
+}
+
+/* Small Desktop/Large Laptop (1024px - 1439px) */
+@media (max-width: 1439px) and (min-width: 1025px) {
+    .navbar img,
+    .navbar .logo {
+        height: 70px !important;
+        max-width: 180px !important;
+    }
+}
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .navbar img,
+    .navbar .logo {
+        height: 65px !important;
+        max-width: 170px !important;
+    }
+}
+
+/* Mobile - Landscape (481px - 768px) */
+@media (max-width: 768px) and (min-width: 481px) {
     .navbar img,
     .navbar .logo {
         height: 60px !important;
-        max-width: 140px !important;
+        max-width: 150px !important;
         margin: 0 auto !important;
     }
 }
 
-/* Small Mobile */
+/* Mobile - Portrait (320px - 480px) */
 @media (max-width: 480px) {
     .navbar img,
     .navbar .logo {
-        height: 45px !important;
+        height: 55px !important;
+        max-width: 140px !important;
+    }
+}
+
+/* Very Small Phones (below 360px) */
+@media (max-width: 360px) {
+    .navbar img,
+    .navbar .logo {
+        height: 50px !important;
         max-width: 130px !important;
     }
 }
