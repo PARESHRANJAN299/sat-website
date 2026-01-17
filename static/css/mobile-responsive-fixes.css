@@ -1,128 +1,26 @@
-
-
-
-
 /* ============================================================================
    SAT INDIA - MOBILE RESPONSIVE FIXES
    
    Purpose: Make the entire website mobile-responsive
-   - Fix navigation cramping
+   - Fix navigation layout
    - Fix hero background images
    - Fix video backgrounds  
    - Fix all content to fit mobile screens
    - Make everything automatically adjust based on screen size
    
-   Author: Claude AI
-   Date: January 2026
+   NOTE: Logo sizing is controlled in style.css (NOT here!)
    
-   HOW TO USE:
-   Add this line to your base.html <head> section AFTER your existing CSS:
-   <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile-responsive-fixes.css') }}">
-============================================================================ */
-
 /* ============================================================================
-   1. CRITICAL VIEWPORT FIX (MUST BE FIRST)
-   Make sure your base.html has this in <head>:
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   1. NAVBAR - MOBILE FIXES (No Logo Sizing - That's in style.css)
 ============================================================================ */
 
-/* ============================================================================
-   LOGO FIX - PROPER SIZES FOR ALL DEVICES
-   Replace your existing logo CSS with this
-============================================================================ */
-
-/* Desktop/Laptop/TV - LARGER LOGO */
-.navbar img,
-.navbar .logo {
-    height: 80px !important;  /* Increased from 60px */
-    width: auto !important;
-    transform: none !important;
-    object-fit: contain !important;
-    max-width: 200px !important;
-    display: block !important;
-}
-
-/* Large Desktop/TV (1920px+) - Even Larger */
-@media (min-width: 1920px) {
-    .navbar img,
-    .navbar .logo {
-        height: 90px !important;
-        max-width: 220px !important;
-    }
-}
-
-/* Medium Desktop (1440px - 1919px) */
-@media (max-width: 1919px) and (min-width: 1440px) {
-    .navbar img,
-    .navbar .logo {
-        height: 80px !important;
-        max-width: 200px !important;
-    }
-}
-
-/* Small Desktop/Large Laptop (1024px - 1439px) */
-@media (max-width: 1439px) and (min-width: 1025px) {
-    .navbar img,
-    .navbar .logo {
-        height: 70px !important;
-        max-width: 180px !important;
-    }
-}
-
-/* Tablet (768px - 1024px) */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .navbar img,
-    .navbar .logo {
-        height: 65px !important;
-        max-width: 170px !important;
-    }
-}
-
-/* Mobile - Landscape (481px - 768px) */
-@media (max-width: 768px) and (min-width: 481px) {
-    .navbar img,
-    .navbar .logo {
-        height: 60px !important;
-        max-width: 150px !important;
-        margin: 0 auto !important;
-    }
-}
-
-/* Mobile - Portrait (320px - 480px) */
-@media (max-width: 480px) {
-    .navbar img,
-    .navbar .logo {
-        height: 55px !important;
-        max-width: 140px !important;
-    }
-}
-
-/* Very Small Phones (below 360px) */
-@media (max-width: 360px) {
-    .navbar img,
-    .navbar .logo {
-        height: 50px !important;
-        max-width: 130px !important;
-    }
-}
-
-/* ============================================================================
-   2. NAVBAR - MOBILE FIXES
-============================================================================ */
-
-/* Make navbar responsive on all screens */
+/* Navbar layout adjustments - logo size controlled in style.css */
 @media (max-width: 1024px) {
     .navbar {
         padding: 0 20px;
         height: auto;
-        min-height: 60px;
+        min-height: 70px;
         flex-wrap: wrap;
-    }
-    
-    .navbar img {
-        height: 50px !important;
-        transform: scale(1) !important;
-        max-width: 120px;
     }
 }
 
@@ -131,11 +29,7 @@
         padding: 10px 15px;
         justify-content: center;
         gap: 10px;
-    }
-    
-    .navbar img {
-        height: 40px !important;
-        transform: none !important;
+        flex-direction: column;
     }
     
     .nav-right {
@@ -173,21 +67,20 @@
 }
 
 /* ============================================================================
-   3. HOME PAGE HERO - BACKGROUND IMAGE FIX
+   2. HOME PAGE HERO - BACKGROUND IMAGE FIX
 ============================================================================ */
 
 .hero {
     min-height: 100vh !important;
-    background-attachment: scroll !important; /* Fixes mobile parallax issues */
+    background-attachment: scroll !important;
     background-size: cover !important;
     background-position: center center !important;
     padding: 60px 20px !important;
 }
 
-/* Mobile-specific hero adjustments */
 @media (max-width: 768px) {
     .hero {
-        min-height: 100svh !important; /* Better mobile viewport */
+        min-height: 100svh !important;
         padding: 40px 15px !important;
     }
     
@@ -223,11 +116,10 @@
 }
 
 /* ============================================================================
-   4. VIDEO HERO SECTIONS - CRITICAL FIXES
+   3. VIDEO HERO SECTIONS - CRITICAL FIXES
    Fixes for: how-it-works, privacy-law, join-us pages
 ============================================================================ */
 
-/* Fix video container */
 .video-hero,
 .privacy-hero,
 .join-hero {
@@ -238,28 +130,20 @@
     overflow: hidden !important;
 }
 
-/* Fix video element itself */
 .hero-video {
     position: absolute !important;
     top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
-    
-    /* Make video fit the container properly */
     min-width: 100% !important;
     min-height: 100% !important;
     width: 100% !important;
     height: 100% !important;
-    
-    /* Critical: Make video cover properly */
     object-fit: cover !important;
     object-position: center !important;
-    
-    /* Remove any scaling animations on mobile */
     animation: none !important;
 }
 
-/* Mobile video fixes */
 @media (max-width: 1024px) {
     .video-hero,
     .privacy-hero,
@@ -282,7 +166,6 @@
     }
     
     .hero-video {
-        /* Ensure video always fills screen on mobile */
         min-width: 100% !important;
         min-height: 100% !important;
         width: auto !important;
@@ -290,7 +173,6 @@
         transform: translate(-50%, -50%) !important;
     }
     
-    /* Adjust hero content for mobile */
     .hero-content {
         padding: 40px 20px !important;
         max-width: 100% !important;
@@ -319,7 +201,6 @@
     }
 }
 
-/* Fix video overlay */
 .hero-overlay {
     position: absolute !important;
     inset: 0 !important;
@@ -329,7 +210,7 @@
 }
 
 /* ============================================================================
-   5. PHONE LOSS SECTION - MOBILE LAYOUT
+   4. PHONE LOSS SECTION - MOBILE LAYOUT
 ============================================================================ */
 
 @media (max-width: 1024px) {
@@ -367,7 +248,7 @@
 }
 
 /* ============================================================================
-   6. FEATURE CARDS - MOBILE GRID
+   5. FEATURE CARDS - MOBILE GRID
 ============================================================================ */
 
 @media (max-width: 1024px) {
@@ -391,7 +272,7 @@
 }
 
 /* ============================================================================
-   7. HOW IT WORKS PAGE - IMAGE FIXES
+   6. HOW IT WORKS PAGE - IMAGE FIXES
 ============================================================================ */
 
 .how-visuals {
@@ -416,7 +297,7 @@
 }
 
 /* ============================================================================
-   8. JOIN US PAGE - MOBILE FIXES
+   7. JOIN US PAGE - MOBILE FIXES
 ============================================================================ */
 
 @media (max-width: 1024px) {
@@ -472,7 +353,7 @@
 }
 
 /* ============================================================================
-   9. SUBSCRIBE SECTION - MOBILE FORM
+   8. SUBSCRIBE SECTION - MOBILE FORM
 ============================================================================ */
 
 @media (max-width: 768px) {
@@ -499,7 +380,7 @@
 }
 
 /* ============================================================================
-   10. WHY SAT PAGE - INFO SECTION
+   9. WHY SAT PAGE - INFO SECTION
 ============================================================================ */
 
 @media (max-width: 1024px) {
@@ -509,7 +390,7 @@
     }
     
     .info-image-box {
-        order: -1; /* Put image first on mobile */
+        order: -1;
     }
     
     .info-image-box img {
@@ -529,7 +410,7 @@
 }
 
 /* ============================================================================
-   11. PRIVACY & LAW PAGE - MOBILE GRID
+   10. PRIVACY & LAW PAGE - MOBILE GRID
 ============================================================================ */
 
 @media (max-width: 1024px) {
@@ -561,7 +442,7 @@
 }
 
 /* ============================================================================
-   12. FOOTER - MOBILE ADJUSTMENTS
+   11. FOOTER - MOBILE ADJUSTMENTS
 ============================================================================ */
 
 @media (max-width: 768px) {
@@ -583,7 +464,7 @@
 }
 
 /* ============================================================================
-   13. GENERAL MOBILE TYPOGRAPHY
+   12. GENERAL MOBILE TYPOGRAPHY
 ============================================================================ */
 
 @media (max-width: 768px) {
@@ -608,7 +489,7 @@
 }
 
 /* ============================================================================
-   14. IMAGE VIEWER - MOBILE OPTIMIZATION
+   13. IMAGE VIEWER - MOBILE OPTIMIZATION
 ============================================================================ */
 
 @media (max-width: 768px) {
@@ -627,7 +508,7 @@
 }
 
 /* ============================================================================
-   15. PREVENT HORIZONTAL SCROLL (CRITICAL)
+   14. PREVENT HORIZONTAL SCROLL (CRITICAL)
 ============================================================================ */
 
 html, body {
@@ -639,24 +520,21 @@ html, body {
     max-width: 100%;
 }
 
-/* Prevent images from breaking layout */
 img, video, iframe {
     max-width: 100% !important;
     height: auto !important;
 }
 
 /* ============================================================================
-   16. TOUCH DEVICE OPTIMIZATIONS
+   15. TOUCH DEVICE OPTIMIZATIONS
 ============================================================================ */
 
-/* Better tap targets for mobile */
 @media (max-width: 768px) {
     a, button, input, .btn {
-        min-height: 44px !important; /* iOS recommended */
+        min-height: 44px !important;
         min-width: 44px !important;
     }
     
-    /* Prevent text size adjustment on orientation change */
     html {
         -webkit-text-size-adjust: 100% !important;
         text-size-adjust: 100% !important;
@@ -664,7 +542,7 @@ img, video, iframe {
 }
 
 /* ============================================================================
-   17. LANDSCAPE MOBILE FIX
+   16. LANDSCAPE MOBILE FIX
 ============================================================================ */
 
 @media (max-width: 900px) and (max-height: 500px) {
@@ -686,7 +564,7 @@ img, video, iframe {
 }
 
 /* ============================================================================
-   18. ACCESSIBILITY - ZOOM SAFETY
+   17. ACCESSIBILITY - ZOOM SAFETY
 ============================================================================ */
 
 @media (prefers-reduced-motion: reduce) {
@@ -700,7 +578,7 @@ img, video, iframe {
 }
 
 /* ============================================================================
-   19. SAFE SCROLLING
+   18. SAFE SCROLLING
 ============================================================================ */
 
 html {
@@ -714,24 +592,20 @@ html {
 }
 
 /* ============================================================================
-   20. FINAL SAFETY NET
-   Ensures nothing breaks the mobile layout
+   19. FINAL SAFETY NET
 ============================================================================ */
 
 @media (max-width: 768px) {
-    /* Force all sections to respect mobile width */
     section, div, main, article, aside {
         max-width: 100vw !important;
         overflow-x: hidden !important;
     }
     
-    /* Ensure buttons fit */
     .btn, .primary, .secondary {
         padding: 12px 20px !important;
         font-size: 0.95rem !important;
     }
     
-    /* Make sure cards don't overflow */
     .card, .feature, .privacy-card, .info-card {
         max-width: 100% !important;
     }
@@ -740,17 +614,7 @@ html {
 /* ============================================================================
    END OF MOBILE RESPONSIVE FIXES
    
+   LOGO SIZING: Controlled in style.css (NOT in this file!)
+   
    This file should be placed in: /static/css/mobile-responsive-fixes.css
-   
-   Test on these devices:
-   - iPhone SE (375px)
-   - iPhone 12/13/14 (390px)
-   - Samsung Galaxy (360px)
-   - iPad (768px)
-   - Tablets (1024px)
-   
-   If any issues persist, check:
-   1. Is this file loaded AFTER your other CSS files?
-   2. Do you have the viewport meta tag?
-   3. Try adding !important to specific rules if needed
 ============================================================================ */
