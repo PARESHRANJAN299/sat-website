@@ -1,0 +1,100 @@
+name: Deploy SAT Website via AWS SSM
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: true
+
+jobs:
+  check-author:
+    name: Check Commit Author
+    runs-on: ubuntu-latest
+    outputs:
+      is-owner: ${{ steps.check.outputs.is-owner }}
+    steps:
+      - name: Check if owner
+        id: check
+        run: |
+          # Your GitHub username - change if different
+          OWNER_USERNAME="PARESHRANJAN299"
+          ACTOR="${{ github.actor }}"
+          
+          if [ "$ACTOR" == "$OWNER_USERNAME" ]; then
+            echo "is-owner=true" >> $GITHUB_OUTPUT
+            echo "✅ Owner detected: $ACTOR - Auto-deploy enabled"
+          else
+            echo "is-owner=false" >> $GITHUB_OUTPUT
+            echo "⚠️ Non-owner detected: $ACTOR - Approval required"
+          fi
+
+  deploy:
+    name: Production Deploy (SSM)
+    runs-on: ubuntu-latest
+    needs: check-author
+    # Auto-deploy for owner, require approval for others
+    environment:
+      name: ${{ needs.check-author.outputs.is-owner == 'true' && 'production-auto' || 'production' }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      
+      - name: Deploy via SSM
+        run: |
+          echo "🚀 Starting deployment..."
+          echo "Deployer: ${{ github.actor }}"
+          echo "Auto-deploy: ${{ needs.check-author.outputs.is-owner }}"
+          
+          COMMAND_ID=$(aws ssm send-command \
+            --instance-ids "${{ secrets.EC2_INSTANCE_ID }}" \
+            --document-name "AWS-RunShellScript" \
+            --comment "Deploy SAT Website from GitHub Actions (by ${{ github.actor }})" \
+            --parameters 'commands=[
+              "set -Eeuo pipefail",
+              "cd /var/www/sat/sat-website",
+              "echo \"📦 Fetching latest code...\"",
+              "git fetch origin main",
+              "git reset --hard origin/main",
+              "echo \"🐍 Activating virtualenv...\"",
+              "source venv/bin/activate",
+              "echo \"📦 Installing dependencies...\"",
+              "pip install --upgrade pip",
+              "pip install -r requirements.txt",
+              "echo \"🔄 Reloading Gunicorn (zero downtime)...\"",
+              "sudo systemctl reload sat",
+              "echo \"✅ Deployment completed successfully\""
+            ]' \
+            --output text \
+            --query "Command.CommandId")
+          
+          echo "Command ID: $COMMAND_ID"
+          echo "Waiting for command to complete..."
+          
+          aws ssm wait command-executed \
+            --command-id "$COMMAND_ID" \
+            --instance-id "${{ secrets.EC2_INSTANCE_ID }}"
+          
+          echo "✅ SSM command executed successfully"
+          
+          OUTPUT=$(aws ssm get-command-invocation \
+            --command-id "$COMMAND_ID" \
+            --instance-id "${{ secrets.EC2_INSTANCE_ID }}" \
+            --output text \
+            --query "StandardOutputContent")
+          
+          echo "📋 Deployment output:"
+          echo "$OUTPUT"
