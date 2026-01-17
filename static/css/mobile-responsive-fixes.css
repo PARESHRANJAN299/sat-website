@@ -12,32 +12,45 @@
    
 /* ============================================================================
    1. NAVBAR - MOBILE FIXES (No Logo Sizing - That's in style.css)
+   Keep navigation horizontal on ALL pages - single row layout
 ============================================================================ */
 
-/* Navbar layout adjustments - logo size controlled in style.css */
+/* Tablet - Keep horizontal */
 @media (max-width: 1024px) {
     .navbar {
-        padding: 0 20px;
+        padding: 0 15px;
         height: auto;
         min-height: 70px;
-        flex-wrap: wrap;
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar {
-        padding: 10px 15px;
-        justify-content: center;
-        gap: 10px;
-        flex-direction: column;
+        flex-wrap: nowrap;  /* Keep in one row */
     }
     
     .nav-right {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
+        gap: 12px;
+    }
+    
+    .nav-right a {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+}
+
+/* Mobile - Keep ALL links in ONE ROW (like How It Works page) */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 8px 10px;
+        justify-content: space-between;  /* Logo left, links right */
+        flex-wrap: nowrap;  /* Don't wrap - keep in one row */
         gap: 8px;
-        margin-top: 8px;
+        height: auto;
+        min-height: 60px;
+    }
+    
+    .nav-right {
+        display: flex;
+        justify-content: flex-end;  /* Align links to right */
+        flex-wrap: wrap;  /* Allow links to wrap if needed */
+        gap: 6px;
+        max-width: 70%;  /* Give space for logo */
     }
     
     .nav-right li {
@@ -45,24 +58,42 @@
     }
     
     .nav-right a {
-        font-size: 0.85rem;
-        padding: 6px 10px;
+        font-size: 0.75rem;  /* Smaller text to fit all links */
+        padding: 5px 7px;
         white-space: nowrap;
     }
 }
 
+/* Small Mobile - Even smaller text */
 @media (max-width: 480px) {
     .navbar {
-        padding: 8px 10px;
+        padding: 6px 8px;
     }
     
     .nav-right {
-        gap: 5px;
+        gap: 4px;
+        max-width: 65%;
     }
     
     .nav-right a {
-        font-size: 0.75rem;
-        padding: 5px 8px;
+        font-size: 0.7rem;
+        padding: 4px 6px;
+    }
+}
+
+/* Very Small Phones - Minimal padding */
+@media (max-width: 380px) {
+    .navbar {
+        padding: 5px 6px;
+    }
+    
+    .nav-right {
+        gap: 3px;
+    }
+    
+    .nav-right a {
+        font-size: 0.65rem;
+        padding: 4px 5px;
     }
 }
 
